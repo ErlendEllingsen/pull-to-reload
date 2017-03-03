@@ -64,5 +64,4 @@ this.opts = {
 ### Contribute
 If you have the time, these features are requested:
 
-* Remove jQuery-dependency
 * Better README
