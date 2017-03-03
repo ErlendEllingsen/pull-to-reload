@@ -32,40 +32,40 @@ var PullToReload = function(optsUser) {
     }
 
     //--- INIT CODE --- 
-    this.ptr = $('#' + self.opts['refresh-element']);
-    this.content = $('#' + self.opts['content-element']);
+    this.ptr = document.querySelector('#' + self.opts['refresh-element']);
+    this.content = document.querySelector('#' + self.opts['content-element']);
 
     //--- STYLING ---
 
     //Set style
-    $(self.ptr).css('padding', '0px');
-    $(self.ptr).css('margin', '0px');
-    $(self.ptr).css('display', 'block');
-    $(self.ptr).css('height', self.opts.height + 'px');
-    $(self.ptr).css('border', self.opts['border-height'] + 'px solid #000');
-    $(self.ptr).css('border-top', '0px');
-    $(self.ptr).css('border-left', '0px');
-    $(self.ptr).css('border-right', '0px');
-    $(self.ptr).css('text-align', 'center');
-    $(self.ptr).css('line-height', self.opts.height + 'px');
-    $(self.ptr).css('font-size', self.opts['font-size']);
+    this.ptr.style.padding = '0px';
+    this.ptr.style.margin = '0px';
+    this.ptr.style.display = 'block';
+    this.ptr.style.height = self.opts.height + 'px';
+    this.ptr.style.border = self.opts['border-height'] + 'px solid #000';
+    this.ptr.style.borderTop = '0px';
+    this.ptr.style.borderLeft = '0px';
+    this.ptr.style.borderRight = '0px';
+    this.ptr.style.textAlign = 'center';
+    this.ptr.style.lineHeight = self.opts.height + 'px';
+    this.ptr.style.fontSize = self.opts['font-size'];
 
     //Hide the margin 
-    $(self.ptr).css('margin-top', '-' + (self.opts['border-height'] + self.opts.height) + 'px');
+    this.ptr.style.marginTop = '-' + (self.opts['border-height'] + self.opts.height) + 'px';
 
     //--- CODE ---
 
     //--- CODE: HANDLING  ---
     this.loadingStart = function() {
-        $(self.ptr).html(self.opts['loading-content']);
+        this.ptr.innerHTML = self.opts['loading-content'];
 
         self.opts['callback-loading'](); //Call callback
         //end loadingStart
     }
 
     this.loadingEnd = function() {
-        $(self.ptr).html(self.opts['pre-content']);
-        $(self.ptr).css('margin-top', '-' + (self.opts['border-height'] + self.opts.height + 'px'));
+        this.ptr.innerHTML = self.opts['pre-content'];
+        this.ptr.style.marginTop = '-' + (self.opts['border-height'] + self.opts.height + 'px');
 
         //end loadingEnd
     }
@@ -77,8 +77,7 @@ var PullToReload = function(optsUser) {
     this.isThresholdReached = false;
     this.posStart = 0;
 
-    $(content).on('mousedown touchstart', function(event){
-
+    content.addEventListener('mousedown', function(event){
         event.stopImmediatePropagation();
 
         self.isDragging = true;
@@ -90,7 +89,7 @@ var PullToReload = function(optsUser) {
     });
 
     //EVENT: MOUSEUP
-    $(content).on('mousemove touchmove', function(event){
+    content.addEventListener('mousemove', function(event){
         if (!self.isDragging) return;
 
         event.stopImmediatePropagation();
@@ -108,14 +107,14 @@ var PullToReload = function(optsUser) {
             self.isThresholdReached = true; 
         }
 
-        $(self.ptr).css('margin-top', '-' + (newMargin + 'px'));
+        self.ptr.style.marginTop = '-' + (newMargin + 'px');
 
         
         //end mousemove touchmove
     });
 
     //EVENT: MOUSEUP
-    $(document).on('mouseup touchend', function(event){
+    document.addEventListener('mouseup', function(event){
         if (!self.isDragging) return;
 
         event.stopImmediatePropagation();
@@ -125,7 +124,7 @@ var PullToReload = function(optsUser) {
         if (self.isThresholdReached) {
 
             //Set margin to show entire 
-            $(self.ptr).css('margin-top', '0px');
+            self.ptr.style.marginTop = '0px';
 
             self.isDragging = false;
             self.isThresholdReached = false;
@@ -135,7 +134,7 @@ var PullToReload = function(optsUser) {
         }
 
         //Reset margin 
-        $(self.ptr).css('margin-top', '-' + (self.opts['border-height'] + self.opts.height + 'px'));
+        self.ptr.style.marginTop = '-' + (self.opts['border-height'] + self.opts.height + 'px');
 
         self.isDragging = false; 
         self.isThresholdReached = false;
@@ -147,3 +146,6 @@ var PullToReload = function(optsUser) {
     //end PullToReload
 }
 
+function addListenerMulti(el, s, fn) {
+    s.split(' ').forEach(e => el.addEventListener(e, fn , false));
+}
