@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <script src="pull-to-reload.js"></script>
+        <script src="jquery.js"></script>
+
+        <style>
+            html, body {
+                margin: 0px;
+                padding: 0px;
+            }
+        </style>
+
+        <script>
+
+            $(document).ready(function(){
+
+
+                var ptr = new PullToReload({ 
+                    'callback-loading': function(){
+                        setTimeout(function(){
+                            ptr.loadingEnd();
+                        }, 5000);
+                    }
+                });
+
+            });
+
+        </script>
+
+    </head>
+    <body>
+    
+        <div id="ptr">
+            ...
+        </div>
+
+        <div id="content">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores doloribus harum sed odit optio, fuga nam modi quod beatae? Tempore sunt molestiae, soluta quas unde exercitationem, modi accusamus pariatur reiciendis!
+        </div>
+
+    </body>
+</html>
