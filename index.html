@@ -4,9 +4,8 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
         <script src="pull-to-reload.js"></script>
-        <script src="jquery.js"></script>
 
         <style>
             html, body {
@@ -17,9 +16,7 @@
 
         <script>
 
-            $(document).ready(function(){
-
-
+            document.addEventListener("DOMContentLoaded", function() {
                 var ptr = new PullToReload({ 
                     'callback-loading': function(){
                         setTimeout(function(){
@@ -27,7 +24,6 @@
                         }, 5000);
                     }
                 });
-
             });
 
         </script>
