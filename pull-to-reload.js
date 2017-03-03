@@ -77,7 +77,15 @@ var PullToReload = function(optsUser) {
     this.isThresholdReached = false;
     this.posStart = 0;
 
+    content.addEventListener('touchstart', function(event){
+        self.mouseStart(event);
+    });
+
     content.addEventListener('mousedown', function(event){
+        self.mouseStart(event);
+    });
+
+    this.mouseStart = function() {
         event.stopImmediatePropagation();
 
         self.isDragging = true;
@@ -86,10 +94,18 @@ var PullToReload = function(optsUser) {
         self.posStart = event.pageY;
         
         //end mousedown touchstart
-    });
+    };
 
     //EVENT: MOUSEUP
+    content.addEventListener('touchmove', function(event){
+        self.mouseMove(event);
+    });
+
     content.addEventListener('mousemove', function(event){
+        self.mouseMove(event);
+    });
+    
+    this.mouseMove = function(event){
         if (!self.isDragging) return;
 
         event.stopImmediatePropagation();
@@ -111,10 +127,17 @@ var PullToReload = function(optsUser) {
 
         
         //end mousemove touchmove
-    });
+    };
 
     //EVENT: MOUSEUP
+    document.addEventListener('touchend', function(event){
+        self.mouseEnd(event);
+    });
     document.addEventListener('mouseup', function(event){
+        self.mouseEnd(event);
+    });
+
+    this.mouseEnd = function(event){
         if (!self.isDragging) return;
 
         event.stopImmediatePropagation();
@@ -140,7 +163,7 @@ var PullToReload = function(optsUser) {
         self.isThresholdReached = false;
 
         //end mouseup touchend
-    });
+    };
 
 
     //end PullToReload
