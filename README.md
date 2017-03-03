@@ -57,7 +57,7 @@ this.opts = {
 
 
 ### Dependencies
-* jQuery 
+None ;D  
 
 
 
