@@ -1,14 +1,21 @@
-# pull-to-reload 
-This is a pull to refresh implementation for the web. Designed to work with both mobile and websites. *Configurable to the seventh degree.*
+# ☝️👇 pull-to-reload 
+This is a pull to refresh implementation for the web. Designed to work with both mobile and desktop devices. Fits nicely with web-apps or single-page applications (SPA). *Configurable to the seventh degree.*
 
 ### Preview 
 
 <img src="https://fat.gfycat.com/AnyHeartfeltBarnswallow.gif" style="height: 300px;" alt="Functionality demo">
 
-### Install 
+## Install 
+
+### NPM (Recommended)
+
+`npm install pull-to-reload`
+
+### Direct
+
 Add `pull-to-reload.js` to your project. 
 
-### Usage 
+##  Usage 
 Quick example: 
 
 **Html**
@@ -56,12 +63,19 @@ this.opts = {
 ```
 
 
-### Dependencies
-None ;D  
+## 📎 Dependencies
+*None* 🔥 
 
+## 🥇 Contributors
+* NathanHeffley 
 
+## 💪🏽 Contribute
+If you'd like to contribute to this project you can do so by creating a *fork* and send in a *pull-request*. 
 
-### Contribute
-If you have the time, these features are requested:
+Make sure to write detailed comments and state your changes when sending in a PR. Keep the code style equal to the current.
 
-* Better README
+Contributions are very much appreciated 😍!
+
+## License
+As most of my other projects, this project is licensed as **MIT**.
+ 

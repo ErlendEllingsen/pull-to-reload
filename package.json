@@ -1,0 +1,36 @@
+{
+  "name": "pull-to-reload",
+  "version": "1.0.0",
+  "description": "This is a pull to refresh implementation for the web. Designed to work with both mobile and desktop.",
+  "main": "pull-to-reload.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ErlendEllingsen/pull-to-reload.git"
+  },
+  "keywords": [
+    "pull",
+    "refresh",
+    "web",
+    "mobile",
+    "html",
+    "pull-to-refresh",
+    "pull",
+    "to",
+    "refresh",
+    "loading",
+    "lod",
+    "pull",
+    "to",
+    "load",
+    "pull-to-load"
+  ],
+  "author": "Erlend Ellingsen <erlend.ame@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ErlendEllingsen/pull-to-reload/issues"
+  },
+  "homepage": "https://github.com/ErlendEllingsen/pull-to-reload#readme"
+}
