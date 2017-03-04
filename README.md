@@ -3,7 +3,7 @@ This is a pull to refresh implementation for the web. Designed to work with both
 
 ### Preview 
 
-<img src="https://fat.gfycat.com/AnyHeartfeltBarnswallow.gif" style="height: 300px;" alt="Functionality demo">
+<img src="https://fat.gfycat.com/AnyHeartfeltBarnswallow.gif" height="300px" alt="Functionality demo">
 
 ## Install 
 
