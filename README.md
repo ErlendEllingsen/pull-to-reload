@@ -1,7 +1,7 @@
 # ☝️👇 pull-to-reload 
 This is a pull to refresh implementation for the web. Designed to work with both mobile and desktop devices. Fits nicely with web-apps or single-page applications (SPA). *Configurable to the seventh degree.*
 
-### Preview 
+## 🌵Preview 
 
 <img src="https://fat.gfycat.com/AnyHeartfeltBarnswallow.gif" height="400px" alt="Functionality demo">
 
@@ -15,7 +15,7 @@ This is a pull to refresh implementation for the web. Designed to work with both
 
 Add `pull-to-reload.js` to your project. 
 
-##  Usage 
+## 🌿Usage 
 Quick example: 
 
 **Html**
@@ -78,4 +78,5 @@ Contributions are very much appreciated 😍!
 
 ## License
 As most of my other projects, this project is licensed as **MIT**.
+
  
