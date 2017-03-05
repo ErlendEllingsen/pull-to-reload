@@ -7,7 +7,7 @@
  * 
  * @author Erlend Ellingsen <erlend.ame@gmail.com>
  * @copyright MIT, Erlend Ellingsen
- * @version	1.0	03.03.2017
+ * @version	1.1	05.03.2017
  */
 
 var PullToReload = function(optsUser) {
@@ -70,6 +70,17 @@ var PullToReload = function(optsUser) {
         //end loadingEnd
     }
 
+    //--- CODE: COMMON FUNCS --- 
+    this.getPageY = function(event) {
+        if (event.pageY == undefined && event.touches != undefined) {
+            if (event.touches.length <= 0) return false; 
+            event.pageY = event.touches[event.touches.length - 1].pageY; 
+        }
+        return event.pageY;
+        
+        //end getPageY
+    }
+
     //--- CODE: EVENTS  ---
 
     //EVENT: MOUSEUP
@@ -86,12 +97,13 @@ var PullToReload = function(optsUser) {
     });
 
     this.mouseStart = function() {
+        event.preventDefault();
         event.stopImmediatePropagation();
 
         self.isDragging = true;
         self.isThresholdReached = false; 
 
-        self.posStart = event.pageY;
+        self.posStart = self.getPageY(event);
         
         //end mousedown touchstart
     };
@@ -108,9 +120,15 @@ var PullToReload = function(optsUser) {
     this.mouseMove = function(event){
         if (!self.isDragging) return;
 
+        event.preventDefault();
         event.stopImmediatePropagation();
         
-        //Calculate the drga distance 
+        //Calculate the drag distance
+        //Android / Chrome compability. Sometimes consists of a list of touches.
+        event.pageY = self.getPageY(event); 
+        if (event.pageY == false) return;
+        
+
         var dragDistance = (event.pageY - self.posStart);
 
         if (dragDistance <= 0) return; //Do not inverse the drag..
@@ -140,9 +158,8 @@ var PullToReload = function(optsUser) {
     this.mouseEnd = function(event){
         if (!self.isDragging) return;
 
+        event.preventDefault();
         event.stopImmediatePropagation();
-        
-        //  console.log(event);
 
         if (self.isThresholdReached) {
 
