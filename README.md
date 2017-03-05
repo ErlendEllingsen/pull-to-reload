@@ -5,6 +5,10 @@ This is a pull to refresh implementation for the web. Designed to work with both
 
 <img src="https://fat.gfycat.com/AnyHeartfeltBarnswallow.gif" height="400px" alt="Functionality demo">
 
+### Demo:
+[https://erlendellingsen.github.io/pull-to-reload/](https://erlendellingsen.github.io/pull-to-reload/)
+
+
 ## Install 
 
 ### NPM (Recommended)
