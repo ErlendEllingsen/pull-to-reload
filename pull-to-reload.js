@@ -1,187 +1,201 @@
 /**
- * 
- * pull-to-reload 
- * 
- * A pull-to-reload system that is compatible with both both web and mobile.
- * Configurable with loads of options.
- * 
- * @author Erlend Ellingsen <erlend.ame@gmail.com>
- * @copyright MIT, Erlend Ellingsen
- * @version	1.1	05.03.2017
- */
+*
+* pull-to-reload
+*
+* A pull-to-reload system that is compatible with both both web and mobile.
+* Configurable with loads of options.
+*
+* @author Erlend Ellingsen <erlend.ame@gmail.com>
+* @copyright MIT, Erlend Ellingsen
+* @version	1.1	05.03.2017
+*/
 
-var PullToReload = function(optsUser) {
-    var self = this; 
+var PullToReload = function (optsUser) {
+	var self = this;
 
-    //--- OPTIONS ---
-    this.opts = {
-        'refresh-element': 'ptr', //Required
-        'content-element': 'content', //Required
-        'border-height': 1,
-        'height': 80,
-        'font-size': '30px',
-        'threshold': 20,
-        'pre-content': '...',
-        'loading-content': 'Loading...',
-        'callback-loading': function(){ setTimeout(function(){ self.loadingEnd(); }, 1000); } //Required
-    }
+    // --- OPTIONS ---
+	this.opts = {
+		'refresh-element': 'ptr', // Required
+		'content-element': 'content', // Required
+		'border-height': 1,
+		height: 80,
+		'font-size': '30px',
+		threshold: 20,
+		'pre-content': '...',
+		'loading-content': 'Loading...',
+		'callback-loading': function () {
+			setTimeout(function () {
+				self.loadingEnd();
+			}, 1000);
+		} // Required
+	};
 
-    //Overwrite options with user-options if present
-    for (var prop in self.opts) {
-        if (optsUser[prop] != undefined) self.opts[prop] = optsUser[prop];
-    }
+    // Overwrite options with user-options if present
+	for (var prop in self.opts) {
+		if (optsUser[prop] !== undefined) {
+			self.opts[prop] = optsUser[prop];
+		}
+	}
 
-    //--- INIT CODE --- 
-    this.ptr = document.querySelector('#' + self.opts['refresh-element']);
-    this.content = document.querySelector('#' + self.opts['content-element']);
+    // --- INIT CODE ---
+	this.ptr = document.querySelector('#' + self.opts['refresh-element']);
+	this.content = document.querySelector('#' + self.opts['content-element']);
 
-    //--- STYLING ---
+    // --- STYLING ---
 
-    //Set style
-    this.ptr.style.padding = '0px';
-    this.ptr.style.margin = '0px';
-    this.ptr.style.display = 'block';
-    this.ptr.style.height = self.opts.height + 'px';
-    this.ptr.style.border = self.opts['border-height'] + 'px solid #000';
-    this.ptr.style.borderTop = '0px';
-    this.ptr.style.borderLeft = '0px';
-    this.ptr.style.borderRight = '0px';
-    this.ptr.style.textAlign = 'center';
-    this.ptr.style.lineHeight = self.opts.height + 'px';
-    this.ptr.style.fontSize = self.opts['font-size'];
+    // Set style
+	this.ptr.style.padding = '0px';
+	this.ptr.style.margin = '0px';
+	this.ptr.style.display = 'block';
+	this.ptr.style.height = self.opts.height + 'px';
+	this.ptr.style.border = self.opts['border-height'] + 'px solid #000';
+	this.ptr.style.borderTop = '0px';
+	this.ptr.style.borderLeft = '0px';
+	this.ptr.style.borderRight = '0px';
+	this.ptr.style.textAlign = 'center';
+	this.ptr.style.lineHeight = self.opts.height + 'px';
+	this.ptr.style.fontSize = self.opts['font-size'];
 
-    //Hide the margin 
-    this.ptr.style.marginTop = '-' + (self.opts['border-height'] + self.opts.height) + 'px';
+    // Hide the margin
+	this.ptr.style.marginTop = '-' + (self.opts['border-height'] + self.opts.height) + 'px';
 
-    //--- CODE ---
+    // --- CODE ---
 
-    //--- CODE: HANDLING  ---
-    this.loadingStart = function() {
-        this.ptr.innerHTML = self.opts['loading-content'];
+    // --- CODE: HANDLING  ---
+	this.loadingStart = function () {
+		this.ptr.innerHTML = self.opts['loading-content'];
 
-        self.opts['callback-loading'](); //Call callback
-        //end loadingStart
-    }
+		self.opts['callback-loading'](); // Call callback
+        // end loadingStart
+	};
 
-    this.loadingEnd = function() {
-        this.ptr.innerHTML = self.opts['pre-content'];
-        this.ptr.style.marginTop = '-' + (self.opts['border-height'] + self.opts.height + 'px');
+	this.loadingEnd = function () {
+		this.ptr.innerHTML = self.opts['pre-content'];
+		this.ptr.style.marginTop = '-' + (self.opts['border-height'] + self.opts.height + 'px');
 
-        //end loadingEnd
-    }
+        // end loadingEnd
+	};
 
-    //--- CODE: COMMON FUNCS --- 
-    this.getPageY = function(event) {
-        if (event.pageY == undefined && event.touches != undefined) {
-            if (event.touches.length <= 0) return false; 
-            event.pageY = event.touches[event.touches.length - 1].pageY; 
-        }
-        return event.pageY;
-        
-        //end getPageY
-    }
+    // --- CODE: COMMON FUNCS ---
+	this.getPageY = function (event) {
+		if (event.pageY === undefined && event.touches !== undefined) {
+			if (event.touches.length <= 0) {
+				return false;
+			}
+			event.pageY = event.touches[event.touches.length - 1].pageY;
+		}
+		return event.pageY;
 
-    //--- CODE: EVENTS  ---
+        // end getPageY
+	};
 
-    //EVENT: MOUSEUP
-    this.isDragging = false; 
-    this.isThresholdReached = false;
-    this.posStart = 0;
+    // --- CODE: EVENTS  ---
 
-    content.addEventListener('touchstart', function(event){
-        self.mouseStart(event);
-    });
+    // EVENT: MOUSEUP
+	this.isDragging = false;
+	this.isThresholdReached = false;
+	this.posStart = 0;
 
-    content.addEventListener('mousedown', function(event){
-        self.mouseStart(event);
-    });
+	self.content.addEventListener('touchstart', function (event) {
+		self.mouseStart(event);
+	});
 
-    this.mouseStart = function(event) {
-        event.preventDefault();
-        event.stopImmediatePropagation();
+	self.content.addEventListener('mousedown', function (event) {
+		self.mouseStart(event);
+	});
 
-        self.isDragging = true;
-        self.isThresholdReached = false; 
+	this.mouseStart = function (event) {
+		event.preventDefault();
+		event.stopImmediatePropagation();
 
-        self.posStart = self.getPageY(event);
-        
-        //end mousedown touchstart
-    };
+		self.isDragging = true;
+		self.isThresholdReached = false;
 
-    //EVENT: MOUSEUP
-    document.addEventListener('touchmove', function(event){
-        self.mouseMove(event);
-    });
+		self.posStart = self.getPageY(event);
 
-    document.addEventListener('mousemove', function(event){
-        self.mouseMove(event);
-    });
-    
-    this.mouseMove = function(event){
-        if (!self.isDragging) return;
+        // end mousedown touchstart
+	};
 
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        
-        //Calculate the drag distance
-        //Android / Chrome compability. Sometimes consists of a list of touches.
-        event.pageY = self.getPageY(event); 
-        if (event.pageY == false) return;
-        
+    // EVENT: MOUSEUP
+	document.addEventListener('touchmove', function (event) {
+		self.mouseMove(event);
+	});
 
-        var dragDistance = (event.pageY - self.posStart);
+	document.addEventListener('mousemove', function (event) {
+		self.mouseMove(event);
+	});
 
-        if (dragDistance <= 0) return; //Do not inverse the drag..
-        
-        var newMargin = (self.opts['border-height'] + (self.opts.height - dragDistance));
-        if (newMargin <= 0) return;
+	this.mouseMove = function (event) {
+		if (!self.isDragging) {
+			return;
+		}
 
-        //Update 
-        if (newMargin <= self.opts.threshold) {
-            self.isThresholdReached = true; 
-        }
+		event.preventDefault();
+		event.stopImmediatePropagation();
 
-        self.ptr.style.marginTop = '-' + (newMargin + 'px');
+        // Calculate the drag distance
+        // Android / Chrome compability. Sometimes consists of a list of touches.
+		event.pageY = self.getPageY(event);
+		if (event.pageY === false) {
+			return;
+		}
 
-        
-        //end mousemove touchmove
-    };
+		var dragDistance = (event.pageY - self.posStart);
 
-    //EVENT: MOUSEUP
-    document.addEventListener('touchend', function(event){
-        self.mouseEnd(event);
-    });
-    document.addEventListener('mouseup', function(event){
-        self.mouseEnd(event);
-    });
+		if (dragDistance <= 0) {
+			return;
+		} // Do not inverse the drag..
 
-    this.mouseEnd = function(event){
-        if (!self.isDragging) return;
+		var newMargin = (self.opts['border-height'] + (self.opts.height - dragDistance));
+		if (newMargin <= 0) {
+			return;
+		}
 
-        event.preventDefault();
-        event.stopImmediatePropagation();
+        // Update
+		if (newMargin <= self.opts.threshold) {
+			self.isThresholdReached = true;
+		}
 
-        if (self.isThresholdReached) {
+		self.ptr.style.marginTop = '-' + (newMargin + 'px');
 
-            //Set margin to show entire 
-            self.ptr.style.marginTop = '0px';
+        // end mousemove touchmove
+	};
 
-            self.isDragging = false;
-            self.isThresholdReached = false;
-            
-            self.loadingStart();
-            return;
-        }
+    // EVENT: MOUSEUP
+	document.addEventListener('touchend', function (event) {
+		self.mouseEnd(event);
+	});
+	document.addEventListener('mouseup', function (event) {
+		self.mouseEnd(event);
+	});
 
-        //Reset margin 
-        self.ptr.style.marginTop = '-' + (self.opts['border-height'] + self.opts.height + 'px');
+	this.mouseEnd = function (event) {
+		if (!self.isDragging) {
+			return;
+		}
 
-        self.isDragging = false; 
-        self.isThresholdReached = false;
+		event.preventDefault();
+		event.stopImmediatePropagation();
 
-        //end mouseup touchend
-    };
+		if (self.isThresholdReached) {
+            // Set margin to show entire
+			self.ptr.style.marginTop = '0px';
 
+			self.isDragging = false;
+			self.isThresholdReached = false;
 
-    //end PullToReload
-}
+			self.loadingStart();
+			return;
+		}
+
+        // Reset margin
+		self.ptr.style.marginTop = '-' + (self.opts['border-height'] + self.opts.height + 'px');
+
+		self.isDragging = false;
+		self.isThresholdReached = false;
+
+        // end mouseup touchend
+	};
+
+    // end PullToReload
+};
