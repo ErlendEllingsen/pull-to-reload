@@ -96,7 +96,7 @@ var PullToReload = function(optsUser) {
         self.mouseStart(event);
     });
 
-    this.mouseStart = function() {
+    this.mouseStart = function(event) {
         event.preventDefault();
         event.stopImmediatePropagation();
 
