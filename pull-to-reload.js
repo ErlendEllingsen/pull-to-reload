@@ -109,11 +109,11 @@ var PullToReload = function(optsUser) {
     };
 
     //EVENT: MOUSEUP
-    content.addEventListener('touchmove', function(event){
+    document.addEventListener('touchmove', function(event){
         self.mouseMove(event);
     });
 
-    content.addEventListener('mousemove', function(event){
+    document.addEventListener('mousemove', function(event){
         self.mouseMove(event);
     });
     
