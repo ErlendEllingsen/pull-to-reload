@@ -1,4 +1,6 @@
-# ☝️👇 pull-to-reload 
+# ☝️👇 pull-to-reload
+[![npm version](https://badge.fury.io/js/pull-to-reload.svg)](https://badge.fury.io/js/pull-to-reload) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+
 This is a pull to refresh implementation for the web. Designed to work with both mobile and desktop devices. Fits nicely with web-apps or single-page applications (SPA). *Configurable to the seventh degree.*
 
 ## 🌵Preview 
@@ -15,7 +17,7 @@ This is a pull to refresh implementation for the web. Designed to work with both
 
 `npm install pull-to-reload`
 
-### Direct
+### Direct ([Download](https://github.com/ErlendEllingsen/pull-to-reload/releases))
 
 Add `pull-to-reload.js` to your project. 
 
