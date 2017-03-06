@@ -73,7 +73,8 @@ this.opts = {
 *None* 🔥 
 
 ## 🥇 Contributors
-* NathanHeffley 
+* NathanHeffley *(Removed jQuery dependency)*
+* mdczaplicki *(Minified version)*
 
 ## 💪🏽 Contribute
 If you'd like to contribute to this project you can do so by creating a *fork* and send in a *pull-request*. 
