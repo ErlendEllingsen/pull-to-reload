@@ -7,7 +7,7 @@
 *
 * @author Erlend Ellingsen <erlend.ame@gmail.com>
 * @copyright MIT, Erlend Ellingsen
-* @version	1.1.4	06.03.2017
+* @version	1.1.5	08.03.2017
 */
 
 var PullToReload = function (optsUser) {
