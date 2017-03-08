@@ -130,9 +130,6 @@ var PullToReload = function (optsUser) {
 			return;
 		}
 
-		event.preventDefault();
-		event.stopImmediatePropagation();
-
         // Calculate the drag distance
         // Android / Chrome compability. Sometimes consists of a list of touches.
 		event.pageY = self.getPageY(event);
@@ -145,6 +142,10 @@ var PullToReload = function (optsUser) {
 		if (dragDistance <= 0) {
 			return;
 		} // Do not inverse the drag..
+
+		//Prevent defaults after dragDistance-check. (We still want to keep site scrolling functionality.)
+		event.preventDefault();
+		event.stopImmediatePropagation();
 
 		var newMargin = (self.opts['border-height'] + (self.opts.height - dragDistance));
 		if (newMargin <= 0) {

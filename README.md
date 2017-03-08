@@ -83,6 +83,10 @@ Make sure to write detailed comments and state your changes when sending in a PR
 
 Contributions are very much appreciated 😍!
 
+### Topics where help is wanted/needed
+* Code: Making *pull-to-reload* **not** block regular scrolling functionality (e.g. in mobile apps).
+* Documentation/Wiki - Detailed how to/setup
+
 ## License
 As most of my other projects, this project is licensed as **MIT**.
 
