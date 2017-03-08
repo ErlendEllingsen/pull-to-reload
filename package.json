@@ -1,6 +1,6 @@
 {
   "name": "pull-to-reload",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "This is a pull to refresh implementation for the web. Designed to work with both mobile and desktop.",
   "main": "pull-to-reload.js",
   "scripts": {

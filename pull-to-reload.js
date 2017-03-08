@@ -105,8 +105,11 @@ var PullToReload = function (optsUser) {
 	});
 
 	this.mouseStart = function (event) {
-		event.preventDefault();
-		event.stopImmediatePropagation();
+
+		//Prevent PTR if position is beyond content start.
+		if (document.body.scrollTop >= self.content.getBoundingClientRect().top) {
+			return;
+		}
 
 		self.isDragging = true;
 		self.isThresholdReached = false;
@@ -126,6 +129,12 @@ var PullToReload = function (optsUser) {
 	});
 
 	this.mouseMove = function (event) {
+
+		//Prevent PTR if position is beyond content start.
+		if (document.body.scrollTop >= self.content.getBoundingClientRect().top) {
+			return;
+		}
+
 		if (!self.isDragging) {
 			return;
 		}
@@ -171,6 +180,12 @@ var PullToReload = function (optsUser) {
 	});
 
 	this.mouseEnd = function (event) {
+
+		//Prevent PTR if position is beyond content start.
+		if (document.body.scrollTop >= self.content.getBoundingClientRect().top) {
+			return;
+		}
+
 		if (!self.isDragging) {
 			return;
 		}
