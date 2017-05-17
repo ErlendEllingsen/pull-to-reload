@@ -54,7 +54,7 @@ $(document).ready(function(){
 
 Available options:
 
-```
+```javascript
 this.opts = {
         'refresh-element': 'ptr', //Required
         'content-element': 'content', //Required
